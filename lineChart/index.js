@@ -23,6 +23,22 @@ svg.append("g")
     .call(d3.axisLeft(scaleY));
 
 
+var makeLine = d3.line()
+    .x(function(d){
+        return scaleX(d.age);
+    })
+    .y(function(d){
+        return scaleY(d.total);
+    });
+
+var makeLine1 = d3.line()
+    .x(function(d){
+        return scaleX(d.age);
+    })
+    .y(function(d){
+        return scaleY(d.TESLA);
+    });
+
 
 //import the data from the .csv file
 d3.csv('./incomeData.csv', function(dataIn){
@@ -52,9 +68,25 @@ d3.csv('./incomeData.csv', function(dataIn){
         .enter()
         .append("circle")
         .attr('cx',function(d){return scaleX(d.age)})
-        .attr('cy',function(d){return scaleY(d.women)})
+        .attr('cy',function(d){return scaleY(d.TESLA)})
         .attr('r',5)
-        .attr('fill','blue')
+        .attr('fill','blue');
+
+    svg.append('path')
+        .datum(dataIn)
+        .attr('class', 'line')
+        .attr('d', makeLine)
+        .attr('fill', 'none')
+        .attr('stroke', 'purple')
+        .attr('stroke-dasharray', 8);
+
+    svg.append('path')
+        .datum(dataIn)
+        .attr('class', 'line1')
+        .attr('d', makeLine1)
+        .attr('fill', 'none')
+        .attr('stroke', 'red')
+        .attr('stroke-dasharray', 5);
 
 
 });

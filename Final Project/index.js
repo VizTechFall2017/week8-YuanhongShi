@@ -199,7 +199,7 @@ function drawPoints(dataPoints) {
     svg2.selectAll('.myCircles')
         .data(dataPoints)
         .attr('cx',function(d){
-            return d.x*0.7-width*0.15;
+            return d.x*0.7-width*0.07;
         })
         .attr('cy', function(d){
             return d.y*0.7+15;
@@ -215,7 +215,7 @@ function drawPoints(dataPoints) {
 
 var lineFunction = d3.line()
     .x(function(d){
-        return d.x*0.7 - width*0.15;
+        return d.x*0.7 - width*0.07;
     })
     .y(function(d){
         return d.y*0.7+15;
